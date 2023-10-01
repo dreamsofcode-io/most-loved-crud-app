@@ -18,6 +18,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app = Router::new()
         .route("/", get(handlers::health))
         .route("/quotes", post(handlers::create_quote))
+        .route("/quotes", get(handlers::read_quotes))
         .with_state(pool);
 
     axum::Server::bind(&addr.parse().unwrap())
